@@ -1,0 +1,16 @@
+{
+  "name": "agency-platform",
+  "version": "1.0.0",
+  "description": "White-label local marketing agency platform: missed-call text-back, instant lead follow-up, review request automation, and SEO website templates.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node src/seed.js"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

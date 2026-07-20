@@ -1,0 +1,60 @@
+:root {
+  --primary: {{primary_color}};
+  --primary-dark: color-mix(in srgb, {{primary_color}} 80%, black);
+  --ink: #1a1a1a;
+  --muted: #5b5b5b;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+h1, h2 { line-height: 1.15; margin: 0 0 12px; }
+a { color: inherit; }
+
+.topbar { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 10; }
+.topbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+.brand { font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+.call-btn { background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 700; text-decoration: none; font-size: 0.9rem; }
+
+.hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 80px 0; text-align: center; }
+.hero h1 { font-size: 2.6rem; max-width: 760px; margin: 0 auto 16px; }
+.hero-sub { font-size: 1.15rem; opacity: 0.95; max-width: 620px; margin: 0 auto 28px; }
+.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 14px 26px; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-block; }
+.btn-primary { background: #fff; color: var(--primary-dark); }
+.btn-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.6); }
+.hero-note { margin-top: 22px; opacity: 0.85; font-size: 0.9rem; }
+
+.services { padding: 70px 0; background: var(--bg); }
+.services h2, .about h2, .testimonials h2, .contact h2 { font-size: 2rem; text-align: center; }
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 34px; }
+.service-card { background: var(--bg-alt); border-radius: 12px; padding: 24px; font-weight: 600; text-align: center; border: 1px solid #eee; }
+
+.about { background: var(--bg-alt); padding: 70px 0; }
+.about-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.trust-badges { display: flex; flex-direction: column; gap: 12px; }
+.badge { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 14px 18px; font-weight: 600; }
+
+.testimonials { padding: 70px 0; text-align: center; }
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin: 34px 0; text-align: left; }
+.testimonial { background: var(--bg-alt); border-radius: 12px; padding: 22px; margin: 0; border-left: 4px solid var(--primary); }
+.testimonial cite { display: block; margin-top: 10px; font-weight: 700; font-style: normal; color: var(--muted); }
+.review-link { font-weight: 700; color: var(--primary-dark); text-decoration: none; }
+
+.contact { background: var(--primary-dark); color: #fff; padding: 70px 0; }
+.contact h2 { text-align: left; }
+.contact-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; }
+.lead-form { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.lead-form input, .lead-form textarea { padding: 12px 14px; border-radius: 8px; border: none; font-size: 1rem; font-family: inherit; }
+.lead-form button { padding: 14px; border-radius: 8px; border: none; background: #fff; color: var(--primary-dark); font-weight: 800; font-size: 1rem; cursor: pointer; }
+.form-status { min-height: 1.2em; font-size: 0.9rem; opacity: 0.9; }
+.contact-details p { margin: 0 0 10px; }
+.contact-details a { text-decoration: underline; }
+
+.footer { padding: 26px 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 760px) {
+  .about-inner, .contact-inner { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2rem; }
+}

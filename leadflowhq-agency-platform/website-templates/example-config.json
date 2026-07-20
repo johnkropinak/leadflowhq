@@ -1,0 +1,36 @@
+{
+  "business_name": "Ace Plumbing Co.",
+  "tagline": "Fast, Reliable Plumbing You Can Trust",
+  "hero_subtext": "24/7 emergency service, upfront pricing, and licensed plumbers who show up on time.",
+  "domain": "aceplumbingco.com",
+  "meta_description": "Ace Plumbing Co. provides fast, licensed plumbing repair and installation in Springfield, IL. Call now for same-day service.",
+  "primary_color": "#1d6fd6",
+  "phone": "+15551234567",
+  "phone_display": "(555) 123-4567",
+  "email": "info@aceplumbingco.com",
+  "address": "123 Main St",
+  "city": "Springfield",
+  "state": "IL",
+  "zip": "62701",
+  "hours": "Mon-Sat 7am-7pm, 24/7 Emergency Line",
+  "years_in_business": "12",
+  "review_rating": "4.9",
+  "review_count": "218",
+  "google_review_url": "https://g.page/r/example/review",
+  "services": [
+    "Emergency Repairs",
+    "Drain Cleaning",
+    "Water Heater Installation",
+    "Leak Detection",
+    "Pipe Repiping",
+    "Bathroom & Kitchen Plumbing"
+  ],
+  "about": "Ace Plumbing Co. has served Springfield homeowners and businesses for over a decade. Our licensed, background-checked plumbers show up on time, explain pricing upfront, and stand behind every job with a satisfaction guarantee.",
+  "testimonials": [
+    { "name": "Karen S.", "quote": "Showed up within the hour and fixed our water heater same day. Highly recommend." },
+    { "name": "Mike T.", "quote": "Upfront pricing, no surprises. Best plumbing company we've used." },
+    { "name": "Dana R.", "quote": "Professional, clean, and fast. Will call them again." }
+  ],
+  "lead_api_url": "https://your-leadflowhq-domain.com/api/leads",
+  "lead_api_key": "PASTE_CLIENT_API_KEY_FROM_DASHBOARD"
+}

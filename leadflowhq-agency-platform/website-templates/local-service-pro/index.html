@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{business_name}} | {{tagline}} | {{city}}, {{state}}</title>
+<meta name="description" content="{{meta_description}}">
+<link rel="canonical" href="https://{{domain}}/">
+<meta property="og:title" content="{{business_name}} - {{tagline}}">
+<meta property="og:description" content="{{meta_description}}">
+<meta property="og:type" content="business.business">
+<meta property="og:url" content="https://{{domain}}/">
+<meta name="theme-color" content="{{primary_color}}">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{business_name}}",
+  "image": "https://{{domain}}/og-image.jpg",
+  "telephone": "{{phone}}",
+  "email": "{{email}}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{address}}",
+    "addressLocality": "{{city}}",
+    "addressRegion": "{{state}}",
+    "postalCode": "{{zip}}",
+    "addressCountry": "US"
+  },
+  "url": "https://{{domain}}/",
+  "priceRange": "$$"
+}
+</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/">{{business_name}}</a>
+      <a class="call-btn" href="tel:{{phone}}">📞 {{phone_display}}</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <h1>{{tagline}}</h1>
+      <p class="hero-sub">{{hero_subtext}}</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="tel:{{phone}}">Call Now: {{phone_display}}</a>
+        <a class="btn btn-secondary" href="#contact">Request a Quote</a>
+      </div>
+      <p class="hero-note">Serving {{city}}, {{state}} and surrounding areas</p>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <h2>Our Services</h2>
+      <div class="service-grid">
+        {{#each services}}<div class="service-card">{{this}}</div>{{/each}}
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="wrap about-inner">
+      <div>
+        <h2>About {{business_name}}</h2>
+        <p>{{about}}</p>
+      </div>
+      <div class="trust-badges">
+        <div class="badge">✅ Licensed &amp; Insured</div>
+        <div class="badge">⭐ {{review_rating}} Rating ({{review_count}} reviews)</div>
+        <div class="badge">⏱ {{years_in_business}}+ Years Serving {{city}}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="wrap">
+      <h2>What Customers Say</h2>
+      <div class="testimonial-grid">
+        {{#each testimonials}}<blockquote class="testimonial"><p>"{{this.quote}}"</p><cite>— {{this.name}}</cite></blockquote>{{/each}}
+      </div>
+      <a class="review-link" href="{{google_review_url}}" target="_blank" rel="noopener">Read more reviews on Google →</a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-inner">
+      <div>
+        <h2>Get a Fast Response</h2>
+        <p>Fill this out and we'll text or call you back right away.</p>
+        <form id="lead-form" class="lead-form">
+          <input type="hidden" name="api_key" value="{{lead_api_key}}">
+          <input type="hidden" name="source" value="website">
+          <input name="name" placeholder="Your name" required>
+          <input name="phone" type="tel" placeholder="Phone number" required>
+          <input name="email" type="email" placeholder="Email (optional)">
+          <textarea name="message" placeholder="What do you need help with?" rows="4"></textarea>
+          <button type="submit">Send &amp; Get a Callback</button>
+          <p class="form-status" id="form-status"></p>
+        </form>
+      </div>
+      <div class="contact-details">
+        <p><strong>Phone:</strong> <a href="tel:{{phone}}">{{phone_display}}</a></p>
+        <p><strong>Email:</strong> <a href="mailto:{{email}}">{{email}}</a></p>
+        <p><strong>Address:</strong> {{address}}, {{city}}, {{state}} {{zip}}</p>
+        <p><strong>Hours:</strong> {{hours}}</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© {{year}} {{business_name}}. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending...';
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch('{{lead_api_url}}', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          status.textContent = "Thanks! We'll be in touch shortly.";
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong. Please call us instead.';
+        }
+      } catch (err) {
+        status.textContent = 'Something went wrong. Please call us instead.';
+      }
+    });
+  </script>
+</body>
+</html>

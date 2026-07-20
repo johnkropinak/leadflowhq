@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{business_name}} | {{tagline}} | {{city}}, {{state}}</title>
+<meta name="description" content="{{meta_description}}">
+<link rel="canonical" href="https://{{domain}}/">
+<meta property="og:title" content="{{business_name}} - {{tagline}}">
+<meta property="og:description" content="{{meta_description}}">
+<meta property="og:type" content="business.business">
+<meta property="og:url" content="https://{{domain}}/">
+<meta name="theme-color" content="{{primary_color}}">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{business_name}}",
+  "telephone": "{{phone}}",
+  "email": "{{email}}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{address}}",
+    "addressLocality": "{{city}}",
+    "addressRegion": "{{state}}",
+    "postalCode": "{{zip}}",
+    "addressCountry": "US"
+  },
+  "url": "https://{{domain}}/",
+  "priceRange": "$$"
+}
+</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">{{business_name}}</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="call-pill" href="tel:{{phone}}">{{phone_display}}</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">{{city}}, {{state}}</p>
+        <h1>{{tagline}}</h1>
+        <p class="hero-sub">{{hero_subtext}}</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">Get a Free Estimate</a>
+          <a class="btn btn-ghost" href="tel:{{phone}}">Call {{phone_display}}</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-stat"><strong>{{years_in_business}}+</strong><span>Years in business</span></div>
+        <div class="hero-stat"><strong>{{review_rating}}★</strong><span>{{review_count}} reviews</span></div>
+        <div class="hero-stat"><strong>Licensed</strong><span>&amp; Insured</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <h2>What We Do</h2>
+      <ul class="service-list">
+        {{#each services}}<li>{{this}}</li>{{/each}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-inner">
+      <h2>About {{business_name}}</h2>
+      <p>{{about}}</p>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <h2>Reviews From {{city}} Customers</h2>
+      <div class="review-grid">
+        {{#each testimonials}}<div class="review-card"><p>"{{this.quote}}"</p><span>{{this.name}}</span></div>{{/each}}
+      </div>
+      <a class="review-link" href="{{google_review_url}}" target="_blank" rel="noopener">See all reviews on Google →</a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Request a Free Estimate</h2>
+        <p>We usually respond within minutes during business hours.</p>
+        <form id="lead-form" class="lead-form">
+          <input type="hidden" name="api_key" value="{{lead_api_key}}">
+          <input type="hidden" name="source" value="website">
+          <input name="name" placeholder="Full name" required>
+          <input name="phone" type="tel" placeholder="Phone number" required>
+          <input name="email" type="email" placeholder="Email">
+          <textarea name="message" placeholder="Tell us about the project" rows="4"></textarea>
+          <button type="submit">Request Estimate</button>
+          <p class="form-status" id="form-status"></p>
+        </form>
+      </div>
+      <div class="contact-card">
+        <p><strong>{{business_name}}</strong></p>
+        <p>{{address}}<br>{{city}}, {{state}} {{zip}}</p>
+        <p><a href="tel:{{phone}}">{{phone_display}}</a></p>
+        <p><a href="mailto:{{email}}">{{email}}</a></p>
+        <p>{{hours}}</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">© {{year}} {{business_name}}. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending...';
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch('{{lead_api_url}}', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          status.textContent = "Thanks! We'll be in touch shortly.";
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong. Please call us instead.';
+        }
+      } catch (err) {
+        status.textContent = 'Something went wrong. Please call us instead.';
+      }
+    });
+  </script>
+</body>
+</html>
